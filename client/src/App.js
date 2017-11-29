@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BeersList from './containers/BeerList';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,6 +10,8 @@ class App extends Component {
 
     this.state = { 
       // items: [],
+      // numberOfItems: 0,
+      numberOfItems: 4,
       items: [{"id":"1","name":"Šviesusis","bitterness":3,"color":"light","alc":6},{"id":"2","name":"Tamsusis","bitterness":5,"color":"dark","alc":8},{"id":"3","name":"Karamelinis","bitterness":4,"color":"dark","alc":7},{"id":"4","name":"Kvietinis","bitterness":3,"color":"light","alc":4}],
       isLoading: false,
     };
@@ -20,6 +23,7 @@ class App extends Component {
 
   BeerList() {
     this.setState({ isLoading: true });
+    
     return fetch('/beer/', {
       method: 'GET',
       headers: {
@@ -29,8 +33,11 @@ class App extends Component {
       },
     }).then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ items: responseJson.items });
-        this.setState({ isLoading: false });
+        this.setState({ 
+          items: responseJson.items,
+          numberOfItems: responseJson.itemCount,
+          isLoading: false,
+        });
         return responseJson.items;
       })
       .catch((error) => {
@@ -38,20 +45,23 @@ class App extends Component {
         this.setState({ isLoading: false });
       });
   }
-    
 
   render() {
-    if (this.state.isLoading) {
+    var items = this.state.items;
+    var isLoading = this.state.isLoading;
+
+    if (isLoading) {
       return 'Loading indicator';
     }
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Beer Routes</h1>
+          <h1 className="App-title">Beers Routes</h1>
         </header>
-        <p className="App-intro">
-        </p>
+        <div className="App-intro">
+           <BeersList beers={items} /> 
+        </div>
       </div>
     );
   }
