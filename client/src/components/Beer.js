@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
-import * as constants from '../lib/constants';
+import { getBeerClass } from '../lib/helpers';
 import './Beer.css';
 
 class Beer extends Component {
 
-    getBeerClass(color) {
-        switch (color) {
-            case constants.LIGHT_BEER:
-                return constants.LIGHT_BEER_CLASS;
-            case constants.DARK_BEER:
-                return constants.DARK_BEER_CLASS;
-            default:
-                return;
-        }
-    };
-
     render() {
         const beer = this.props.beer;
-        const beerClass = this.getBeerClass(beer.color);
+        const beerClass = getBeerClass(beer.color);
 
         return (
             <div className="row">

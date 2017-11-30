@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Beer from '../components/Beer';
 import BeerListHeader from '../components/BeerListHeader';
+import BeerService from '../services/BeerService';
 import './BeerList.css';
 
 class BeerList extends Component {
@@ -25,7 +26,7 @@ class BeerList extends Component {
                     {beerElements}
                 </div>
                 <div className="col-xs-3">
-                    FILTER | SORT
+                    <BeerService sortBeerList={this.props.sortBeerList} filterBeerList={this.props.filterBeerList} filterList={this.filterList}/>
                 </div>
             </section>
         );

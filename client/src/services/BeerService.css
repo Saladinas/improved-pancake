@@ -1,0 +1,11 @@
+.BeerService-container {
+    border-left: 3px solid;
+}
+
+.Active-cursor {
+    cursor: pointer;
+}
+
+.Icon-spaces {
+    margin: 0px 10px;
+}
