@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BeersList from './containers/BeerList';
+import BeerList from './containers/BeerList';
 import logo from './logo.svg';
 import './App.css';
 
@@ -57,10 +57,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Beers Routes</h1>
+          <h1 className="App-title">Beer Routes</h1>
         </header>
         <div className="App-intro">
-           <BeersList beers={items} /> 
+           <BeerList beers={items} /> 
         </div>
       </div>
     );

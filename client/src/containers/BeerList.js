@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Beer from '../components/Beer';
+import BeerListHeader from '../components/BeerListHeader';
 import './BeerList.css';
 
-class BeersList extends Component {
+class BeerList extends Component {
 
-    getListOfBeersIds() {
+    getListOfBeerIds() {
         return Object.keys(this.props.beers);
     };
 
@@ -15,19 +16,20 @@ class BeersList extends Component {
     };
 
     render() {
-        const beerElements = this.getListOfBeersIds().map(this.getBeerElement, this);
+        const beerElements = this.getListOfBeerIds().map(this.getBeerElement, this);
 
         return (
             <section className="row Beer-list-container">
                 <div className="col-xs-7 col-xs-offset-1">
-                {beerElements}
+                    <BeerListHeader/>
+                    {beerElements}
                 </div>
                 <div className="col-xs-3">
-                FILTER | SORT
+                    FILTER | SORT
                 </div>
             </section>
         );
     }
 }
 
-export default BeersList;
+export default BeerList;

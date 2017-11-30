@@ -1,0 +1,10 @@
+.List-header-container {
+    border-bottom: 5px solid;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Icon {
+    vertical-align: middle;
+}
