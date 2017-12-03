@@ -24,7 +24,7 @@ class App extends Component {
   getBeerList() {
     this.setState({ isLoading: true });
 
-    return fetch(constants.API_URL + '/beer/', {
+    return fetch(constants.API_URL + '/beer', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
