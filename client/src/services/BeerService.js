@@ -27,31 +27,8 @@ class BeerService extends Component {
         return filteringOptions;
     }
 
-    getSortingOptions() {
-        const filteringOptions = [
-            // {
-            //     "id": "1",
-            //     "display": constants.REMOVE_SORTING_DISPLAY,
-            //     "value": constants.REMOVE_SORTING,
-            // },
-            {
-                "id": "2",
-                "display": constants.BITTERNESS_DISPLAY,
-                "value": constants.BITTERNESS,
-            },
-            {
-                "id": "3",
-                "display": constants.VOLUME_DISPLAY,
-                "value": constants.VOLUME,
-            },
-        ];
-
-        return filteringOptions;
-    }
-
     render() {
         const filteringOptions = this.getFilteringOptions();
-        const sortingOptions = this.getSortingOptions();
 
         return (
             <div className="BeerService-container">
@@ -60,17 +37,6 @@ class BeerService extends Component {
                     return (
                         <div onClick={() => this.props.filterBeerList(option.value)} className={`Active-cursor ${getBeerClass(option.value)}`} key={option.id}>
                             {option.display}
-                        </div>
-                    )
-                }, this)}
-                <div>---------------------------------</div>
-                SORT BEER
-                {sortingOptions.map(function (option) {
-                    return (
-                        <div className={`Active-cursor`} key={option.id}>
-                            {option.display}:
-                            <span onClick={() => this.props.sortBeerList(option.value, constants.ASCENDING)}  className="Icon-spaces"><i className="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                            <span onClick={() => this.props.sortBeerList(option.value, constants.DESCENDING)}  className="Icon-spaces"><i className="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                         </div>
                     )
                 }, this)}

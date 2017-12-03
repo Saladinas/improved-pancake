@@ -22,10 +22,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.BeerList();
+    // this.getBeerList();
   }
 
-  BeerList() {
+  getBeerList() {
     this.setState({ isLoading: true });
 
     return fetch('/beer/', {
@@ -60,12 +60,22 @@ class App extends Component {
   }
 
   sortBeerList(sortValue, sortDirection) {
-    if (sortDirection === constants.ASCENDING) {
-      const itemsToDisplay = this.state.items.sort(compareByProperty(sortValue, 1));
-      this.setState({ itemsToDisplay: itemsToDisplay });
-    } else if (sortDirection === constants.DESCENDING) {
-      const itemsToDisplay = this.state.items.sort(compareByProperty(sortValue, -1));
-      this.setState({ itemsToDisplay: itemsToDisplay });
+    var sortedItemsToDisplay = this.state.items;
+
+    switch (sortDirection) {
+      case constants.ASCENDING:
+        sortedItemsToDisplay = this.state.itemsToDisplay.sort(compareByProperty(sortValue, 1));
+        this.setState({ itemsToDisplay: sortedItemsToDisplay });
+        break;
+      case constants.DESCENDING:
+        sortedItemsToDisplay = this.state.itemsToDisplay.sort(compareByProperty(sortValue, -1));
+        this.setState({ itemsToDisplay: sortedItemsToDisplay });
+        break;
+      case constants.NO_SORTING:
+        this.setState({ itemsToDisplay: sortedItemsToDisplay });
+        break;
+      default:
+        return;
     }
   }
 

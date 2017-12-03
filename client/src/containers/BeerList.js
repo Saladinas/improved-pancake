@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Beer from '../components/Beer';
-import BeerListHeader from '../components/BeerListHeader';
+import BeerListHeaders from '../components/BeerListHeaders';
 import BeerService from '../services/BeerService';
 import './BeerList.css';
 
@@ -22,7 +22,7 @@ class BeerList extends Component {
         return (
             <section className="row Beer-list-container">
                 <div className="col-xs-7 col-xs-offset-1">
-                    <BeerListHeader/>
+                    <BeerListHeaders sortBeerList={this.props.sortBeerList} />
                     {beerElements}
                 </div>
                 <div className="col-xs-3">
