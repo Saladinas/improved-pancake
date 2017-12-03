@@ -9,16 +9,11 @@ class BeerService extends Component {
         const filteringOptions = [
             {
                 "id": "1",
-                "display": constants.ALL_BEER_DISPLAY,
-                "value": constants.ALL_BEER,
-            },
-            {
-                "id": "2",
                 "display": constants.LIGHT_BEER_DISPLAY,
                 "value": constants.LIGHT_BEER,
             },
             {
-                "id": "3",
+                "id": "2",
                 "display": constants.DARK_BEER_DISPLAY,
                 "value": constants.DARK_BEER,
             },
@@ -27,16 +22,23 @@ class BeerService extends Component {
         return filteringOptions;
     }
 
+    changeActiveBeerFilter(selectedOption) {
+        if (selectedOption === this.props.selectedFilter) {
+            selectedOption = null;
+        }
+        this.props.filterBeerList(selectedOption)
+    }
+
     render() {
         const filteringOptions = this.getFilteringOptions();
+        const selectedFilter = this.props.selectedFilter;
 
         return (
             <div className="BeerService-container">
-                FILTER BEER
                 {filteringOptions.map(function (option) {
                     return (
-                        <div onClick={() => this.props.filterBeerList(option.value)} className={`Active-cursor ${getBeerClass(option.value)}`} key={option.id}>
-                            {option.display}
+                        <div className={getBeerClass(option.value)} key={option.id}>
+                            <span className={`Filter-option ${selectedFilter === option.value ? 'Active-filter' : null}`} onClick={() => this.changeActiveBeerFilter(option.value)}>{option.display}</span>
                         </div>
                     )
                 }, this)}

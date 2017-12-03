@@ -17,7 +17,7 @@ class App extends Component {
       displayingItems: 4,
       items: [{ "id": "1", "name": "Šviesusis", "bitterness": 3, "color": "light", "alc": 6 }, { "id": "2", "name": "Tamsusis", "bitterness": 5, "color": "dark", "alc": 8 }, { "id": "3", "name": "Karamelinis", "bitterness": 4, "color": "dark", "alc": 7 }, { "id": "4", "name": "Kvietinis", "bitterness": 3, "color": "light", "alc": 4 }],
       itemsToDisplay: [{ "id": "1", "name": "Šviesusis", "bitterness": 3, "color": "light", "alc": 6 }, { "id": "2", "name": "Tamsusis", "bitterness": 5, "color": "dark", "alc": 8 }, { "id": "3", "name": "Karamelinis", "bitterness": 4, "color": "dark", "alc": 7 }, { "id": "4", "name": "Kvietinis", "bitterness": 3, "color": "light", "alc": 4 }],
-      isLoading: false,
+      selectedFilter: null,
     };
   }
 
@@ -40,27 +40,31 @@ class App extends Component {
         this.setState({
           items: responseJson.items,
           numberOfItems: responseJson.itemCount,
-          isLoading: false,
         });
         return responseJson.items;
       })
       .catch((error) => {
         console.error(error);
-        this.setState({ isLoading: false });
       });
   }
 
   filterBeerList(filterValue) {
-    if (filterValue === constants.ALL_BEER) {
-      this.setState({ itemsToDisplay: this.state.items });
+    if (filterValue === null) {
+      this.setState({
+        selectedFilter: filterValue,
+        itemsToDisplay: this.state.items,
+      });
     } else {
       const itemsToDisplay = this.state.items.filter(item => item.color === filterValue);
-      this.setState({ itemsToDisplay: itemsToDisplay });
+      this.setState({
+        itemsToDisplay: itemsToDisplay,
+        selectedFilter: filterValue,
+      });
     }
   }
 
   sortBeerList(sortValue, sortDirection) {
-    var sortedItemsToDisplay = this.state.items;
+    var sortedItemsToDisplay = this.state.itemsToDisplay;
 
     switch (sortDirection) {
       case constants.ASCENDING:
@@ -72,7 +76,7 @@ class App extends Component {
         this.setState({ itemsToDisplay: sortedItemsToDisplay });
         break;
       case constants.NO_SORTING:
-        this.setState({ itemsToDisplay: sortedItemsToDisplay });
+        this.filterBeerList(this.state.selectedFilter)
         break;
       default:
         return;
@@ -81,11 +85,7 @@ class App extends Component {
 
   render() {
     var itemsToDisplay = this.state.itemsToDisplay;
-    var isLoading = this.state.isLoading;
 
-    if (isLoading) {
-      return 'Loading indicator';
-    }
     return (
       <div className="App">
         <header className="App-header">
@@ -93,7 +93,7 @@ class App extends Component {
           <h1 className="App-title">Beer Routes</h1>
         </header>
         <div className="App-intro">
-          <BeerList sortBeerList={this.sortBeerList.bind(this)} filterBeerList={this.filterBeerList.bind(this)} beers={itemsToDisplay} />
+          <BeerList selectedFilter={this.state.selectedFilter} sortBeerList={this.sortBeerList.bind(this)} filterBeerList={this.filterBeerList.bind(this)} beers={itemsToDisplay} />
         </div>
       </div>
     );

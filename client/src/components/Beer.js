@@ -10,9 +10,9 @@ class Beer extends Component {
 
         return (
             <div className="row">
-                <div className={`col-xs-6 ${beerClass}`}>{beer.name}</div>
-                <div className="col-xs-3">{beer.bitterness}</div>
-                <div className="col-xs-3">{beer.alc}</div>
+                <div className={`col-md-6 col-xs-3 Beer-name ${beerClass}`}>{beer.name}</div>
+                <div className={`col-md-3 col-xs-5 ${beerClass}`}><span className={`badge Beer-numbers ${beerClass}`}>{beer.bitterness}</span></div>
+                <div className={`col-md-3 col-xs-4 ${beerClass}`}><span className={`badge Beer-numbers ${beerClass}`}>{beer.alc}</span></div>
             </div>
         );
     }

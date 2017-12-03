@@ -1,7 +1,18 @@
 .Light-beer-color {
     color: #FBB117;
+    font-weight: bold;
 }
 
 .Dark-beer-color {
     color: #835C3B;
+    font-weight: bold;
+}
+
+.Beer-numbers {
+    font-size: 2vw;
+}
+
+.Beer-name {
+    font-size: 2.5vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

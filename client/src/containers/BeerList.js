@@ -26,7 +26,7 @@ class BeerList extends Component {
                     {beerElements}
                 </div>
                 <div className="col-xs-3">
-                    <BeerService sortBeerList={this.props.sortBeerList} filterBeerList={this.props.filterBeerList} filterList={this.filterList}/>
+                    <BeerService selectedFilter={this.props.selectedFilter} sortBeerList={this.props.sortBeerList} filterBeerList={this.props.filterBeerList} filterList={this.filterList}/>
                 </div>
             </section>
         );

@@ -6,8 +6,6 @@ export function getBeerClass(color) {
             return constants.LIGHT_BEER_CLASS;
         case constants.DARK_BEER:
             return constants.DARK_BEER_CLASS;
-        case constants.ALL_BEER:
-            return constants.ALL_BEER_CLASS;
         default:
             return;
     }

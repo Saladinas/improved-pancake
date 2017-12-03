@@ -2,10 +2,15 @@
     border-left: 3px solid;
 }
 
-.Active-cursor {
+.Filter-option {
     cursor: pointer;
+    font-size: 3vw;
 }
 
 .Icon-spaces {
     margin: 0px 10px;
+}
+
+.Active-filter {
+    text-decoration: underline;
 }

@@ -73,8 +73,8 @@ class Header extends Component {
         const header = this.props.header;
 
         return (
-            <div onClick={this.changeSortDirection.bind(this)} className={header.class}>
-                <span className="Header-title">{header.name}</span>
+            <div className={header.class}>
+                <span onClick={this.changeSortDirection.bind(this)} className="Header-title">{header.name}</span>
                 <span className={`Icon ${this.state.sortIcon}`}></span>
             </div>
         );
