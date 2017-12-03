@@ -17,5 +17,5 @@ module.exports = Object.freeze({
     DESCENDING: 'Descending',
     ASCENDING_ICON: 'glyphicon glyphicon-circle-arrow-down',
     DESCENDING_ICON: 'glyphicon glyphicon-circle-arrow-up',
-    API_URL: 'https://lukas-inproved-pancake.herokuapp.com/',
+    API_URL: 'https://lukas-improved-pancake.herokuapp.com/',
 });
